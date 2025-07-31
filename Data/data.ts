@@ -97,28 +97,4 @@ export const data: dataType[] = [
       "Enhanced developer console with advanced filtering and logging.",
     isActive: true,
   },
-  {
-    id: 13,
-    logo: "/logo-console-plus.svg",
-    name: "ConsolePlus",
-    description:
-      "Enhanced developer console with advanced filtering and logging.",
-    isActive: true,
-  },
-  {
-    id: 14,
-    logo: "/logo-console-plus.svg",
-    name: "ConsolePlus",
-    description:
-      "Enhanced developer console with advanced filtering and logging.",
-    isActive: true,
-  },
-  {
-    id: 15,
-    logo: "/logo-console-plus.svg",
-    name: "ConsolePlus",
-    description:
-      "Enhanced developer console with advanced filtering and logging.",
-    isActive: true,
-  },
 ];
