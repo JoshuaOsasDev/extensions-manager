@@ -1,14 +1,29 @@
-import { useState, type JSX } from "react";
+import { useState, useEffect, type JSX } from "react";
+
+const LOCAL_KEY = "dark_mode";
 
 function NavBar(): JSX.Element {
-  const [darkMode, setDarkMode] = useState<boolean>(() =>
-    document.documentElement.classList.contains("dark"),
-  );
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const stored = localStorage.getItem(LOCAL_KEY);
+    if (stored !== null) return stored === "true";
+    return document.documentElement.classList.contains("dark");
+  });
+
+  // Apply dark mode class to HTML element when darkMode changes
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    // Save preference
+    localStorage.setItem(LOCAL_KEY, String(darkMode));
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
     setDarkMode((prev) => !prev);
   };
+
   return (
     <div className="bg-neutral-0 m-3 flex justify-between rounded-2xl p-3 shadow-sm dark:bg-neutral-800">
       <img
@@ -24,7 +39,7 @@ function NavBar(): JSX.Element {
           <img
             role="button"
             src={darkMode ? "/icon-sun.svg" : "/icon-moon.svg"}
-            alt=""
+            alt="Toggle Theme"
           />
         </span>
       </button>
